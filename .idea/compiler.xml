@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="exam-schedule-service" />
+        <module name="api-gateway" />
+        <module name="facade" />
+        <module name="group-subject-service" />
+        <module name="MicroDeath" />
+        <module name="user-service" />
+        <module name="eureka-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="config-server1" target="1.8" />
+      <module name="demo" target="17" />
+      <module name="eureka-server2" target="1.8" />
+      <module name="facade-service" target="1.8" />
+      <module name="user-service (1)" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="config-server1" options="-parameters" />
+      <module name="demo" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="eureka-server2" options="-parameters" />
+      <module name="exam-schedule-service" options="-parameters" />
+      <module name="facade" options="-parameters" />
+      <module name="facade-service" options="-parameters" />
+      <module name="group-subject-service" options="-parameters" />
+      <module name="user-service" options="-parameters" />
+      <module name="user-service (1)" options="-parameters" />
+    </option>
+  </component>
+</project>

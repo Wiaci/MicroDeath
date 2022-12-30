@@ -1,0 +1,20 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: exam-schedule-service
+  config:
+    import: optional:configserver:http://localhost:8888
+
+eureka:
+  client:
+    service-url:
+      defautZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          r2dbc: DEBUG
