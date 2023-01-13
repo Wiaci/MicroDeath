@@ -5,4 +5,19 @@ spring:
     config:
       server:
         git:
-          uri: C:\Users\vyach\Desktop\proj\MicroDeath\MicroDeath\src\main\resources
+          uri: C:\Users\vyach\Desktop\proj\MicroDeath\MicroDeath\config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+

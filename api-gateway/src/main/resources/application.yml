@@ -12,22 +12,34 @@ spring:
           lower-case-service-id: true
       routes:
         - id: facade-service
-          uri: lb://user-service
+          uri: lb://user-service/api
           predicates:
             - Path=/users
         - id: facade-service
-          uri: lb://exam-schedule-service
+          uri: lb://exam-schedule-service/api
           predicates:
             - Path=/**
         - id: facade-service
-          uri: lb://group-subject-service
+          uri: lb://group-subject-service/api
           predicates:
             - Path=/**
         - id: facade-service
-          uri: lb://facade-service
+          uri: lb://facade-service/api
           predicates:
             - Path=/auth/login
             - Method=GET
+        - id: user-service
+            uri: lb://user-service/api1
+            predicates:
+              - Path=/users
+        - id: exam-schedule-service
+          uri: lb://exam-schedule-service/api1
+          predicates:
+            - Path=/**
+        - id: group-subject-service
+          uri: lb://group-subject-service/api1
+          predicates:
+            - Path=/**
 
 
 eureka:

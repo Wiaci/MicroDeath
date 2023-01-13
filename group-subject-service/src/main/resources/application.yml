@@ -6,6 +6,9 @@ spring:
     name: group-subject-service
   config:
     import: optional:configserver:http://localhost:8888
+  jpa:
+    hibernate:
+      ddl-auto: none
 
 eureka:
   client:

@@ -18,3 +18,9 @@ logging:
       springframework:
         data:
           r2dbc: DEBUG
+opentracing:
+  jaeger:
+    udp-sender:
+      host: localhost
+      port: 6831
+    log-spans: true

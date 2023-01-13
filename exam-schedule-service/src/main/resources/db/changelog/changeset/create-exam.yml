@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-exam
+      author: wiaci
+      changes:
+        - createTable:
+            tableName: exam
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: student_id
+                  type: int
+                  constraints:
+                    referencedTableName: student
+                    nullable: false
+              - column:
+                  name: teacher_id
+                  type: int
+                  constraints:
+                    referencedTableName: teacher
+                    nullable: false
+              - column:
+                  name: subject_id
+                  type: int
+                  constraints:
+                    referencedTableName: subject
+                    nullable: false
+              - column:
+                  name: date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: grade
+                  type: int
+                  constraints:
+                    nullable: true
+                    checkConstraint: "grade <= 5 and grade >= 2"
+

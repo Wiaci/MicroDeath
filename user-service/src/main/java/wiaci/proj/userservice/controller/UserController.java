@@ -9,7 +9,7 @@ import wiaci.proj.userservice.service.UserService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/users")
+@RequestMapping("/api1/users")
 public class UserController {
 
     private final UserService userService;

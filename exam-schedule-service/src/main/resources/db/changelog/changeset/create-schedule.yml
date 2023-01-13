@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-schedule
+      author: wiaci
+      changes:
+        - createTable:
+            tableName: schedule
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_id
+                  type: int
+                  constraints:
+                    referencedTableName: grp
+                    nullable: false
+              - column:
+                  name: teacher_id
+                  type: int
+                  constraints:
+                    referencedTableName: teacher
+                    nullable: false
+              - column:
+                  name: subject_id
+                  type: int
+                  constraints:
+                    referencedTableName: subject
+                    nullable: false
+              - column:
+                  name: date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: teacher_to_subject
+            columns:
+              - column:
+                  name: teacher_id
+                  type: int
+                  constraints:
+                    referencedTableName: teacher
+                    nullable: false
+              - column:
+                  name: subject_id
+                  type: int
+                  constraints:
+                    referencedTableName: subject
+                    nullable: false

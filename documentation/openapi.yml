@@ -1,0 +1,500 @@
+openapi: 3.0.0
+
+info:
+  title: OpenAPI Specification for MicroDeath
+  version: '1.0'
+
+servers:
+  - url: 'http://localhost:8765/'
+  
+tags:
+  - name: users
+    description: Operations with users
+  - name: students
+    description: Operations with students
+  - name: teachers
+    description: Operations with teachers
+  - name: groups
+    description: Operations with groups
+  - name: subjects
+    description: Operations with subjects
+  - name: exams
+    description: Operations with exams
+  - name: schedule
+    description: Operations with schedule
+  
+  
+
+paths:
+  /users:
+    summary: Get user
+    get:
+      tags:
+        - users
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+          description: user's name
+      responses:
+        '200':
+          description: User is found
+        '400':
+          description: User not found
+  /users/all:
+    summary: Get all users
+    get:
+      tags:
+        - users
+      responses:
+        '200':
+          description: userlist delivered
+  /users/new:
+    summary: Add user
+    post:
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User addition success
+        '400':
+          description: User addition error
+  /users/delete:
+    summary: Delete user
+    delete:
+      tags:
+        - users
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: integer
+          description: user's id
+      responses:
+        '200':
+          description: User deletion success
+        '400':
+          description: User deletion error
+  
+  /students:
+    summary: Get student
+    get:
+      tags:
+        - students
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: integer
+          description: student's id
+      responses:
+        '200':
+          description: Student is found
+        '400':
+          description: Student not found
+  /students/all:
+    summary: Get all students
+    get:
+      tags:
+        - students
+      responses:
+        '200':
+          description: Student list delivered
+  /students/new:
+    summary: Add student
+    post:
+      tags:
+        - students
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Student'
+      responses:
+        '200':
+          description: Student addition success
+        '400':
+          description: Student addition error
+  /students/delete:
+    summary: Delete Student
+    delete:
+      tags:
+        - students
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: integer
+          description: Student's id
+      responses:
+        '200':
+          description: Student deletion success
+        '400':
+          description: Student deletion error
+  
+  /teachers:
+    summary: Get teacher
+    get:
+      tags:
+        - teachers
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: integer
+          description: teacher's id
+      responses:
+        '200':
+          description: teacher is found
+        '400':
+          description: teacher not found
+  /teachers/all:
+    summary: Get all teachers
+    get:
+      tags:
+        - teachers
+      responses:
+        '200':
+          description: teacher list delivered
+  /teachers/new:
+    summary: Add teacher
+    post:
+      tags:
+        - teachers
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Teacher'
+      responses:
+        '200':
+          description: teacher addition success
+        '400':
+          description: teacher addition error
+  /teachers/delete:
+    summary: Delete teacher
+    delete:
+      tags:
+        - teachers
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: integer
+          description: teacher's id
+      responses:
+        '200':
+          description: teacher deletion success
+        '400':
+          description: teacher deletion error
+  
+  /groups:
+    summary: Get page of groups
+    get:
+      tags:
+        - groups
+      parameters:
+        - in: query
+          name: pageNum
+          schema:
+            type: integer
+          description: page number
+        - in: query
+          name: pageCount
+          schema:
+            type: integer
+          description: number of elements on a page
+      responses:
+        '200':
+          description: list delivered
+    post:
+      tags:
+        - groups
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          description: Group addition success
+        '400':
+          description: Group addition error
+  /groups/{id}:
+    get:
+      tags:
+        - groups
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: group found
+        '400':
+          description: group not found
+  /groups/delete/{id}:
+    delete:
+      tags:
+        - groups
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: group deletion success
+          
+  /exams/{id}:
+    get:
+      tags:
+        - exams
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: exam found
+        '400':
+          description: exam not found
+    delete:
+      tags:
+        - exams
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: exam deletion success
+  /exams/getAll:
+    summary: Get all exams
+    get:
+      tags:
+        - exams
+      responses:
+        '200':
+          description: teacher list delivered
+  /exams:
+    post:
+      tags:
+        - exams
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Exam'
+      responses:
+        '200':
+          description: Exam addition success
+        '400':
+          description: Exam addition error
+          
+  /schedule/{id}:
+    get:
+      tags:
+        - schedule
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: schedule found
+        '400':
+          description: schedule not found
+    delete:
+      tags:
+        - schedule
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: schedule deletion success
+  /schedule/getAll:
+    summary: Get all schedules
+    get:
+      tags:
+        - schedule
+      responses:
+        '200':
+          description: schedule list delivered
+  /schedule:
+    post:
+      tags:
+        - schedule
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Schedule'
+      responses:
+        '200':
+          description: Schedule addition success
+        '400':
+          description: Schedule addition error
+
+  /subjects/{id}:
+    get:
+      tags:
+        - subjects
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: subject found
+        '400':
+          description: subject not found
+    delete:
+      tags:
+        - subjects
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: subject deletion success
+  /subjects/getAll:
+    summary: Get all subjects
+    get:
+      tags:
+        - subjects
+      responses:
+        '200':
+          description: subject list delivered
+  /subjects:
+    post:
+      tags:
+        - subjects
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Subject'
+      responses:
+        '200':
+          description: Subject addition success
+        '400':
+          description: Subject addition error
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        password:
+          type: string
+        lastPasswordResetDate:
+          type: string
+        role:
+          type: string
+    Exam:
+      type: object
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: string
+        teacherId:
+          type: string
+        subjectId:
+          type: string
+        date:
+          type: string
+        grade:
+          type: integer
+    Group:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: integer
+        groupId:
+          type: string
+        subjectId:
+          type: string
+        teacherId:
+          type: string
+        date:
+          type: string
+    Student:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: string
+        groupId:
+          type: string
+    Subject:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Teacher:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: string
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      

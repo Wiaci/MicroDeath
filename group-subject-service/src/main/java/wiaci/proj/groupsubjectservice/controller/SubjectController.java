@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/subjects")
+@RequestMapping("/api1/subjects")
 public class SubjectController {
 
     private final SubjectService subjectService;

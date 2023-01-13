@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-grp
+      author: wiaci
+      changes:
+        - createTable:
+            tableName: grp
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: varchar(10)
+                  constraints:
+                    unique: true
+                    nullable: false
+

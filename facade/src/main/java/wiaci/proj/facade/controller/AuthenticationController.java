@@ -13,7 +13,7 @@ import wiaci.proj.facade.feignClient.UserClient;
 import wiaci.proj.facade.security.jwt.JwtTokenProvider;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 

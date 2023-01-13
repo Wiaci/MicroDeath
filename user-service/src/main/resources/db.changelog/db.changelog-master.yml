@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/create-usr.yml
+  - include:
+      file: db/changelog/changeset/create-student.yml
+  - include:
+      file: db/changelog/changeset/create-teacher.yml

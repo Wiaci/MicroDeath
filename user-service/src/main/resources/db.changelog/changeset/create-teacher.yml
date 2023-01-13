@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-teacher
+      author: wiaci
+      changes:
+        - createTable:
+            tableName: teacher
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    referencedTableName: usr
+                    nullable: false

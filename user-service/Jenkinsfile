@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM '* * * * *'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh './mvnw build'
+            }
+        }
+         stage('Test') {
+            steps {
+                sh './mvnw test'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh './mvnw spring-boot:build-image'
+            }
+        }
+        stage('Run Docker Image') {
+            steps {
+                sh 'docker run -t user-service:0.0.1-SNAPSHOT'
+            }
+        }
+    }
+}

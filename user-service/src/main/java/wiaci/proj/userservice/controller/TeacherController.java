@@ -10,7 +10,7 @@ import wiaci.proj.userservice.service.TeacherService;
 import wiaci.proj.userservice.service.UserService;
 
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/api1/teachers")
 @RequiredArgsConstructor
 public class TeacherController {
 

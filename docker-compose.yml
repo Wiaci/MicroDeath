@@ -1,0 +1,112 @@
+version: "3.8"
+
+services:
+  elk:
+    image: sebp/elk
+    ports:
+      - "5601:5601" #kibana
+      - "9200:9200" #elastic
+      - "5044:5044" #logstash
+
+  db:
+    image: 'postgres:latest'
+    container_name: db2
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=wiaci
+      - POSTGRES_PASSWORD=jhq071
+    ports:
+      - '5432:5432'
+
+  config-server:
+    image: wiaci.proj/config-server:latest
+    container_name: config-server
+    build:
+      context: ./config-server
+      args:
+        - APP_NAME=config-server
+        - APP_VERSION=0.0.1-SNAPSHOT
+
+  api-gateway:
+    image: wiaci.proj/api-gateway:latest
+    container_name: api-gateway
+    build:
+      context: ./api-gateway
+      args:
+        - APP_NAME=api-gateway
+        - APP_VERSION=0.0.1-SNAPSHOT
+
+  eureka-server:
+    image: wiaci.proj/eureka-server:latest
+    container_name: eureka-server
+    build:
+      context: ./eureka-server
+      args:
+        - APP_NAME=eureka-server
+        - APP_VERSION=0.0.1-SNAPSHOT
+
+  exam-schedule-service:
+    image: wiaci.proj/exam-schedule-service:latest
+    container_name: exam-schedule-service
+    build:
+      context: ./exam-schedule-service
+      args:
+        - APP_NAME=exam-schedule-service
+        - APP_VERSION=0.0.1-SNAPSHOT
+
+  facade:
+    image: wiaci.proj/facade:latest
+    container_name: facade
+    build:
+      context: ./facade
+      args:
+        - APP_NAME=facade
+        - APP_VERSION=0.0.1-SNAPSHOT
+
+  group-subject-service:
+    image: wiaci.proj/group-subject-service:latest
+    container_name: group-subject-service
+    build:
+      context: ./group-subject-service
+      args:
+        - APP_NAME=group-subject-service
+        - APP_VERSION=0.0.1-SNAPSHOT
+
+  user-service:
+    image: wiaci.proj/user-service:latest
+    container_name: user-service
+    build:
+      context: ./user-service
+      args:
+        - APP_NAME=user-service
+        - APP_VERSION=0.0.1-SNAPSHOT
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      monitoring:
+        aliases:
+          - grafana
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus:/prometheus
+    networks:
+      monitoring:
+        aliases:
+          - prometheus
+
+  jaeger:
+    image: jaegertracing/all-in-one
+    ports:
+      - "9090:16686"
